@@ -133,5 +133,58 @@ public class MufasaTests {
 		assertEquals(0,person.setEmail("Tauno@mail.com"));
 		assertEquals("Tauno@mail.com",person.getEmail());
 	}
-
+	@Test
+	public void test_bankdetails_fail() {
+		//contains non digit/alpahabets
+		assertEquals(1,bankdetails.setAddress(" !"));
+		assertEquals(null,bankdetails.getAddress());	
+		//non alphabets
+		assertEquals(1,bankdetails.setCity("Oulu1"));
+		assertEquals(null,bankdetails.getCity());
+		//contain alphabets
+		assertEquals(1,bankdetails.setPcode("ki-"));
+		assertEquals(null,bankdetails.getPcode());
+		//non alphabets
+		assertEquals(1,bankdetails.setCountry("!Finland"));
+		assertEquals(null,bankdetails.getCountry());
+		Person testperson = new Person();
+		
+		testperson.setPassword("Salasana");
+		bankdetails.setPerson(testperson);
+		//same as the users password
+		assertEquals(1,bankdetails.setPassword("Salasana"));
+		assertEquals(null,bankdetails.getPassword());
+		
+		
+	}
+	
+	@Test
+	public void test_person_fail() {	
+		//non standard letters
+		assertEquals(1,person.setFname("ÄASA"));
+		assertEquals(null,person.getFname());
+		//symbols
+		assertEquals(1,person.setLname("!__s"));
+		assertEquals(null,person.getLname());
+		//too many _
+		assertEquals(1,person.setUname("Tauno__"));
+		assertEquals(null,person.getFname());
+		//too long
+		assertEquals(1,person.setUname("123456789qwsadrcvfd"));
+		assertEquals(null,person.getUname());
+		//too short
+		assertEquals(1,person.setPassword("sala"));
+		assertEquals(null,person.getPassword());
+		//not in the list
+		assertEquals(1,person.setCountry("Winland"));
+		assertEquals(null,person.getCountry());
+		//non digits
+		assertEquals(1,person.setBday("aa/aa/bbbb"));
+		assertEquals(null,person.getBday());
+		//non digits
+		assertEquals(1,person.setPhone("0s0123456789"));
+		assertEquals(null,person.getPhone());
+		//There were no requirements for email checks
+		
+	}
 }

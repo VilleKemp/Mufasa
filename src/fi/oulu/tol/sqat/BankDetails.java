@@ -102,7 +102,8 @@ public class BankDetails {
 			}
 	}
 	public int setPassword(String psw) {
-		if(this.password != person.getPassword()) {
+
+		if(psw != person.getPassword()) {
 		this.password = psw;
 		return 0;
 		}

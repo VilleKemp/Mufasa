@@ -3,7 +3,7 @@ package fi.oulu.tol.sqat;
 import java.util.Arrays;
 import java.util.List;
 
-//Stub class
+//Stub class for service which gives the list for valid countries
 
 public class CountryList {
 	public List<String> getCountries(){
